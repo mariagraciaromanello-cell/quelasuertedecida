@@ -1,0 +1,141 @@
+--- src/index.css (原始)
+@import "tailwindcss";
+
+
++++ src/index.css (修改后)
+@import "tailwindcss";
+
+/* ============================================================
+   CUSTOM ANIMATIONS
+   ============================================================ */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 140, 0, 0.4); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Animation utility classes */
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.animate-bounce-slow {
+  animation: bounceSlow 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* ============================================================
+   GLOBAL STYLES
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #FFD93D;
+  outline-offset: 2px;
+}
+
+/* Remove tap highlight on mobile */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fadeIn,
+  .animate-scaleIn,
+  .animate-bounce-slow,
+  .animate-pulse-glow {
+    animation: none !important;
+  }
+
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================ */
+
+@media (max-width: 380px) {
+  .text-3xl {
+    font-size: 1.6rem;
+  }
+
+  .text-4xl {
+    font-size: 2rem;
+  }
+}
+
+/* Ensure no horizontal scroll */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
